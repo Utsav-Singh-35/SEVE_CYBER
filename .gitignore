@@ -173,8 +173,7 @@ run-dev-admin.bat
 # ================================
 # Directories
 # ================================
-python/
-report/
+
 scripts/
 src1/
 
@@ -182,7 +181,7 @@ src1/
 # Data & Media Files
 # ================================
 drive_info.json
-WhatsApp Image 2026-01-26 at 7.47.44 AM.jpeg
+WhatsApp Image 2026-M.jpeg
 requirements.txt
 
 # ================================
