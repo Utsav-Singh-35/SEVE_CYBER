@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVE.AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai_styles.css">
+    <link rel="stylesheet" href="browser_privacy.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons (local bundle - works offline and in dist) -->
+    <script src="lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+    <!-- SEVE Starting Animation -->
+    <div class="center-container" id="mainContainer">
+        <div class="fade-text-container">
+            <div class="fade-text">SEVE
+                <div class="black-div" id="typingText"></div>
+            </div>
+        </div>
+        <div class="seve-logo" id="seveLogo" style="display: none;">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 500 500"
+                enable-background="new 0 0 500 500" xml:space="preserve">
+                <path fill="#ff0000" opacity="1.000000" stroke="none"
+                    d="M261.091888,391.127258 C321.260071,351.606262 345.399597,295.680725 338.323944,224.184998 C375.040466,258.539185 390.511200,299.665741 382.803680,348.752899 C374.579498,401.130432 333.506927,445.125366 280.488525,456.542267 C229.133804,467.600952 185.386078,452.335266 148.833405,413.244659 C189.318420,418.516663 226.484344,412.068542 261.091888,391.127258 z" />
+                <path fill="#ff0000" opacity="1.000000" stroke="none"
+                    d="M197.850098,331.208954 C223.747833,340.064545 249.880417,341.906036 276.461121,338.360321 C265.031372,363.466034 205.248749,387.926239 165.794724,384.749390 C108.736534,380.155090 58.273186,338.433228 45.268444,281.044617 C32.847763,226.233398 56.284939,175.765244 88.442001,150.219238 C75.942963,240.722992 132.691742,309.689026 197.850098,331.208954 z" />
+                <path fill="#ff0000" opacity="1.000000" stroke="none"
+                    d="M117.959267,160.029419 C125.241768,99.977211 171.482941,52.179447 230.816788,43.190086 C281.856415,35.457344 330.043793,59.761002 350.984222,88.500847 C296.543304,81.692787 248.792282,96.163452 209.826309,135.189194 C170.795471,174.279907 156.733246,222.203720 163.817123,277.684814 C129.183121,245.452103 113.344429,206.977158 117.959267,160.029419 z" />
+                <path fill="#ff0000" opacity="1.000000" stroke="none"
+                    d="M435.713501,174.305038 C475.662903,232.834366 463.703369,308.998322 413.170044,352.237061 C420.037140,297.266205 405.826019,249.259460 366.782318,210.127106 C327.738953,170.995102 279.860962,156.744736 225.464310,163.465439 C270.090332,107.143478 375.414886,92.405128 435.713501,174.305038 z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Device Outer Shell -->
+    <!-- Device Outer Shell (Main App Container) -->
+    <div class="device-outer-shell" id="deviceShell" style="opacity:0;">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <!-- Hamburger Menu Button -->
+            <div class="hamburger-container">
+                <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" type="button">
+                    <i data-lucide="menu" class="hamburger-icon"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-logo">
+                <svg class="sidebar-icon" viewBox="0 0 500 500" width="28" height="28">
+                    <path fill="#ff4444"
+                        d="M261.091888,391.127258 C321.260071,351.606262 345.399597,295.680725 338.323944,224.184998 C375.040466,258.539185 390.511200,299.665741 382.803680,348.752899 C374.579498,401.130432 333.506927,445.125366 280.488525,456.542267 C229.133804,467.600952 185.386078,452.335266 148.833405,413.244659 C189.318420,418.516663 226.484344,412.068542 261.091888,391.127258 z" />
+                    <path fill="#ff4444"
+                        d="M197.850098,331.208954 C223.747833,340.064545 249.880417,341.906036 276.461121,338.360321 C265.031372,363.466034 205.248749,387.926239 165.794724,384.749390 C108.736534,380.155090 58.273186,338.433228 45.268444,281.044617 C32.847763,226.233398 56.284939,175.765244 88.442001,150.219238 C75.942963,240.722992 132.691742,309.689026 197.850098,331.208954 z" />
+                    <path fill="#ff4444"
+                        d="M117.959267,160.029419 C125.241768,99.977211 171.482941,52.179447 230.816788,43.190086 C281.856415,35.457344 330.043793,59.761002 350.984222,88.500847 C296.543304,81.692787 248.792282,96.163452 209.826309,135.189194 C170.795471,174.279907 156.733246,222.203720 163.817123,277.684814 C129.183121,245.452103 113.344429,206.977158 117.959267,160.029419 z" />
+                    <path fill="#ff4444"
+                        d="M435.713501,174.305038 C475.662903,232.834366 463.703369,308.998322 413.170044,352.237061 C420.037140,297.266205 405.826019,249.259460 366.782318,210.127106 C327.738953,170.995102 279.860962,156.744736 225.464310,163.465439 C270.090332,107.143478 375.414886,92.405128 435.713501,174.305038 z" />
+                </svg>
+                <div class="logo-content">
+                    <span class="logo-text">SEVE</span>
+                    <span class="logo-subtitle">Security Engine</span>
+                </div>
+            </div>
+            
+            <!-- Refresh Button -->
+            <div class="sidebar-refresh">
+                <button id="refreshBtn" class="sidebar-refresh-btn">
+                    <i data-lucide="rotate-cw" class="refresh-icon"></i>
+                    <span class="refresh-text">Refresh</span>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item active" data-section="home" data-tooltip="Home">
+                    <i data-lucide="layout-dashboard" class="nav-icon"></i>
+                    <span class="nav-text">Home</span>
+                </li>
+                <li class="nav-item" data-section="erase-engine" data-tooltip="Erase Engine">
+                    <i data-lucide="shield-x" class="nav-icon"></i>
+                    <span class="nav-text">Erase Engine</span>
+                </li>
+                <li class="nav-item" data-section="health" data-tooltip="Health Dashboard">
+                    <i data-lucide="heart-pulse" class="nav-icon"></i>
+                    <span class="nav-text">Health Dashboard</span>
+                </li>
+                <li class="nav-item" data-section="performance" data-tooltip="Performance">
+                    <i data-lucide="gauge" class="nav-icon"></i>
+                    <span class="nav-text">Performance</span>
+                </li>
+                <li class="nav-item" data-section="chat" data-tooltip="Chat">
+                    <i data-lucide="bot" class="nav-icon"></i>
+                    <span class="nav-text">Chat</span>
+                </li>
+                <li class="nav-item" data-section="browser-privacy" data-tooltip="Browser Privacy">
+                    <i data-lucide="cookie" class="nav-icon"></i>
+                    <span class="nav-text">Browser Privacy</span>
+                </li>
+                <li class="nav-item" data-section="forensic" data-tooltip="Forensic Scan">
+                    <i data-lucide="search" class="nav-icon"></i>
+                    <span class="nav-text">Forensic Scan</span>
+                </li>
+                <li class="nav-item" data-section="malware" data-tooltip="Malware Detection">
+                    <i data-lucide="shield-alert" class="nav-icon"></i>
+                    <span class="nav-text">Malware Detection</span>
+                </li>
+                <li class="nav-item" data-section="network" data-tooltip="Network Monitor">
+                    <i data-lucide="network" class="nav-icon"></i>
+                    <span class="nav-text">Network Monitor</span>
+                </li>
+                <li class="nav-item" data-section="exfiltration" data-tooltip="Exfiltration Detection">
+                    <i data-lucide="file-warning" class="nav-icon"></i>
+                    <span class="nav-text">Exfiltration</span>
+                </li>
+                <li class="nav-item" data-section="anomaly" data-tooltip="Anomaly Detection">
+                    <i data-lucide="activity" class="nav-icon"></i>
+                    <span class="nav-text">Anomaly Detection</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="user-status">
+                    <div class="status-indicator online"></div>
+                    <span>System Active</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i data-lucide="shield-check"></i>
+                            <span>DOD 5220.22-M Certified • 100% Offline</span>
+                        </div>
+                        <h1 class="hero-title">
+                            5-Level Erasure. <span class="highlight-glow">AI-Powered.</span> Cryptographically Verified.
+                        </h1>
+                        <p class="hero-subtitle">
+                            Military-grade data destruction with built-in offline AI analysis. 
+                            Generates tamper-proof cryptographic certificates. No cloud. No internet. No compromise.
+                        </p>
+                        
+                        <!-- USP Highlights -->
+                        <div class="usp-grid">
+                            <div class="usp-item">
+                                <i data-lucide="layers"></i>
+                                <div>
+                                    <strong>5-Level Architecture</strong>
+                                    <span>Adaptive erasure (L1-L5) based on drive type</span>
+                                </div>
+                            </div>
+                            <div class="usp-item">
+                                <i data-lucide="brain"></i>
+                                <div>
+                                    <strong>Built-in AI</strong>
+                                    <span>Offline LLM (Phi-2) for intelligent analysis</span>
+                                </div>
+                            </div>
+                            <div class="usp-item">
+                                <i data-lucide="wifi-off"></i>
+                                <div>
+                                    <strong>Fully Offline</strong>
+                                    <span>Zero cloud dependency, bootable USB ready</span>
+                                </div>
+                            </div>
+                            <div class="usp-item">
+                                <i data-lucide="file-check-2"></i>
+                                <div>
+                                    <strong>Cryptographic Proof</strong>
+                                    <span>Tamper-resistant certificates with signatures</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <button class="btn-hero btn-primary" onclick="document.querySelector('[data-section=erase-engine]').click()">
+                                <i data-lucide="zap"></i>
+                                Start 5-Level Erase
+                            </button>
+                            <button class="btn-hero btn-secondary" onclick="document.querySelector('[data-section=forensic]').click()">
+                                <i data-lucide="search"></i>
+                                Forensic Scan
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="threat-counter">
+                            <div class="counter-item">
+                                <div class="counter-value" id="threatsDetected">0</div>
+                                <div class="counter-label">Threats Detected</div>
+                            </div>
+                            <div class="counter-item">
+                                <div class="counter-value" id="filesScanned">0</div>
+                                <div class="counter-label">Files Scanned</div>
+                            </div>
+                            <div class="counter-item">
+                                <div class="counter-value" id="dataErased">0 GB</div>
+                                <div class="counter-label">Data Erased</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="features-section">
+                    <h2 class="section-title">5-Level Erasure Architecture</h2>
+                    <p class="section-subtitle">Adaptive data destruction based on drive type and security requirements</p>
+                    
+                    <div class="levels-grid">
+                        <div class="level-card level-1">
+                            <div class="level-header">
+                                <span class="level-number">L1</span>
+                                <h3>Quick Erase</h3>
+                            </div>
+                            <p>Single-pass overwrite for removable media (USB, SD cards)</p>
+                            <div class="level-specs">
+                                <span>1 Pass • Fast • Removable Drives</span>
+                            </div>
+                        </div>
+                        
+                        <div class="level-card level-2">
+                            <div class="level-header">
+                                <span class="level-number">L2</span>
+                                <h3>Standard Erase</h3>
+                            </div>
+                            <p>3-pass overwrite for internal non-OS drives</p>
+                            <div class="level-specs">
+                                <span>3 Pass • Secure • Internal Drives</span>
+                            </div>
+                        </div>
+                        
+                        <div class="level-card level-3">
+                            <div class="level-header">
+                                <span class="level-number">L3</span>
+                                <h3>Safe Clear</h3>
+                            </div>
+                            <p>Free space wipe for OS volumes (preserves system)</p>
+                            <div class="level-specs">
+                                <span>Free Space Only • OS Safe</span>
+                            </div>
+                        </div>
+                        
+                        <div class="level-card level-4">
+                            <div class="level-header">
+                                <span class="level-number">L4</span>
+                                <h3>DOD Standard</h3>
+                            </div>
+                            <p>7-pass DOD 5220.22-M compliant erasure</p>
+                            <div class="level-specs">
+                                <span>7 Pass • DOD Certified • High Security</span>
+                            </div>
+                        </div>
+                        
+                        <div class="level-card level-5">
+                            <div class="level-header">
+                                <span class="level-number">L5</span>
+                                <h3>Gutmann Method</h3>
+                            </div>
+                            <p>35-pass maximum security erasure</p>
+                            <div class="level-specs">
+                                <span>35 Pass • Maximum Security • Forensic-Proof</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title" style="margin-top: 80px;">Security Arsenal</h2>
+                    <div class="features-grid">
+                        <div class="feature-card" onclick="document.querySelector('[data-section=browser-privacy]').click()">
+                            <div class="feature-icon">
+                                <i data-lucide="cookie"></i>
+                            </div>
+                            <h3>Browser Privacy</h3>
+                            <p>Scan & clear tracking cookies, detect privacy risks</p>
+                            <div class="feature-badge">Active</div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="document.querySelector('[data-section=forensic]').click()">
+                            <div class="feature-icon">
+                                <i data-lucide="search"></i>
+                            </div>
+                            <h3>Forensic Scanner</h3>
+                            <p>Recover deleted files from unallocated disk space</p>
+                            <div class="feature-badge">Active</div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="document.querySelector('[data-section=malware]').click()">
+                            <div class="feature-icon">
+                                <i data-lucide="shield-alert"></i>
+                            </div>
+                            <h3>Malware Detection</h3>
+                            <p>Real-time monitoring for self-replicating threats</p>
+                            <div class="feature-badge">Active</div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="document.querySelector('[data-section=network]').click()">
+                            <div class="feature-icon">
+                                <i data-lucide="network"></i>
+                            </div>
+                            <h3>Network Monitor</h3>
+                            <p>Detect data leaks via outgoing traffic analysis</p>
+                            <div class="feature-badge">Active</div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="document.querySelector('[data-section=exfiltration]').click()">
+                            <div class="feature-icon">
+                                <i data-lucide="file-warning"></i>
+                            </div>
+                            <h3>Exfiltration Detection</h3>
+                            <p>Correlate file access with network transmission</p>
+                            <div class="feature-badge">Active</div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="document.querySelector('[data-section=anomaly]').click()">
+                            <div class="feature-icon">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <h3>Anomaly Detection</h3>
+                            <p>Baseline analysis & statistical threat detection</p>
+                            <div class="feature-badge">Active</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <i data-lucide="layers"></i>
+                        <div class="stat-content">
+                            <div class="stat-value">5-Level</div>
+                            <div class="stat-label">Adaptive Erasure Architecture</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="brain"></i>
+                        <div class="stat-content">
+                            <div class="stat-value">Phi-2 LLM</div>
+                            <div class="stat-label">Built-in Offline AI</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="shield-check"></i>
+                        <div class="stat-content">
+                            <div class="stat-value">Cryptographic</div>
+                            <div class="stat-label">Tamper-Proof Certificates</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="wifi-off"></i>
+                        <div class="stat-content">
+                            <div class="stat-value">100% Offline</div>
+                            <div class="stat-label">No Cloud • No Internet</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Erase Engine Section -->
+            <section id="erase-engine" class="content-section">
+                <div class="section-header">
+                    <h1>Erase <span class="highlight">Engine</span></h1>
+                    <p>Secure Data Erasure & Verification</p>
+                </div>
+
+                <!-- Step Cards -->
+                <div class="step-cards" id="stepCards">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <i data-lucide="usb" class="step-icon"></i>
+                            <h3>Step 1: Insert Media</h3>
+                        </div>
+                        <p>Insert your USB drive or select storage device to begin secure erasure process.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-header">
+                            <i data-lucide="hard-drive-download" class="step-icon"></i>
+                            <h3>Step 2: Select Drives</h3>
+                        </div>
+                        <p>Choose the drives you want to securely erase. All selected data will be permanently deleted.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-header">
+                            <i data-lucide="file-check" class="step-icon"></i>
+                            <h3>Step 3: Get Report</h3>
+                        </div>
+                        <p>Download a detailed PDF log of all deleted files and erasure verification.</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="erase-actions">
+                    <button id="scanBtn" class="btn btn-primary">
+                        <i data-lucide="scan-search" class="btn-icon"></i>
+                        Scan Drives
+                    </button>
+                    <button id="saveBtn" class="btn btn-secondary" disabled>
+                        <i data-lucide="hard-drive-download" class="btn-icon"></i>
+                        Machine Report
+                    </button>
+                    <button id="pdfBtn" class="btn btn-accent" disabled>
+                        <i data-lucide="file-text" class="btn-icon"></i>
+                        PDF Report
+                    </button>
+                </div>
+
+                <!-- Error State (Hidden by default) -->
+                <div id="error" class="error-state hidden">
+                    <i data-lucide="alert-circle" class="error-icon"></i>
+                    <h3>Scan Failed</h3>
+                    <p id="errorText">An error occurred while scanning drives.</p>
+                    <button class="btn btn-secondary" onclick="document.getElementById('error').classList.add('hidden')">
+                        <i data-lucide="x" class="btn-icon"></i>
+                        Dismiss
+                    </button>
+                </div>
+
+                <!-- Results Section (Hidden by default) -->
+                <div id="results" class="results-section hidden">
+                    <div class="results-header">
+                        <h3>Detected Drives</h3>
+                        <p>Select the drives you want to securely erase</p>
+                    </div>
+                    <div id="driveCards" class="drive-cards"></div>
+                    <div class="results-actions">
+                        <button id="deleteBtn" class="btn btn-danger" disabled>
+                            <i data-lucide="trash-2" class="btn-icon"></i>
+                            Delete Selected
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Health Section -->
+            <section id="health" class="content-section">
+                <div class="section-header">
+                    <h1>Health <span class="highlight">Dashboard</span></h1>
+                    <p>System Performance & Optimization Insights</p>
+                </div>
+                
+                <!-- Health Score Card -->
+                <div class="health-score-card">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 200 200" class="score-svg">
+                            <circle cx="100" cy="100" r="90" class="score-bg"></circle>
+                            <circle cx="100" cy="100" r="90" class="score-fill" id="scoreCircle"></circle>
+                        </svg>
+                        <div class="score-content">
+                            <div class="score-value" id="healthScore">--</div>
+                            <div class="score-label">Health Score</div>
+                            <div class="score-status" id="healthStatus">Analyzing...</div>
+                        </div>
+                    </div>
+                    <button id="refreshHealthBtn" class="btn-primary">
+                        <i data-lucide="refresh-cw"></i> Refresh Health
+                    </button>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon cpu-icon">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">CPU Usage</div>
+                            <div class="metric-value" id="cpuUsage">--%</div>
+                            <div class="metric-detail" id="cpuDetail">-- cores</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon memory-icon">
+                            <i data-lucide="database"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Memory</div>
+                            <div class="metric-value" id="memoryUsage">--%</div>
+                            <div class="metric-detail" id="memoryDetail">-- / -- GB</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon disk-icon">
+                            <i data-lucide="hard-drive"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Disk Activity</div>
+                            <div class="metric-value" id="diskActivity">--%</div>
+                            <div class="metric-detail" id="diskDetail">Active time</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon uptime-icon">
+                            <i data-lucide="clock"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">System Uptime</div>
+                            <div class="metric-value" id="uptime">--</div>
+                            <div class="metric-detail" id="processCount">-- processes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disk Space Overview -->
+                <div class="disk-space-section">
+                    <h3>Disk Space Overview</h3>
+                    <div id="diskSpaceCards" class="disk-cards-grid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Health Insights -->
+                <div class="health-insights-section">
+                    <h3>Health Insights & Recommendations</h3>
+                    <div id="healthInsights" class="insights-container">
+                        <div class="insight-placeholder">
+                            <i data-lucide="activity"></i>
+                            <p>Click "Refresh Health" to analyze your system</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Section -->
+            <section id="performance" class="content-section">
+                <div class="section-header">
+                    <h1>Performance <span class="highlight">Metrics</span></h1>
+                    <p>IOPS and Throughput Analytics</p>
+                </div>
+                <div class="placeholder-content">
+                    <p>Real-time read/write speed analytics coming soon.</p>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section id="chat" class="content-section">
+                <div class="section-header">
+                    <h1>SEVE <span class="highlight">Chat</span></h1>
+                    <p>AI Support & Command Interface</p>
+                </div>
+                <div class="placeholder-content">
+                    <p>Integrated GPT-4 support for erasure protocols coming soon.</p>
+                </div>
+            </section>
+
+            <!-- Browser Privacy Section -->
+            <section id="browser-privacy" class="content-section">
+                <div class="section-header">
+                    <h1>Browser <span class="highlight">Privacy</span> Analyzer</h1>
+                    <p>Scan cookies and storage for tracking and sensitive data</p>
+                </div>
+                
+                <div class="browser-privacy-container">
+                    <div class="alert-box warning">
+                        <i data-lucide="alert-triangle"></i>
+                        <strong>Important:</strong> Close Chrome/Edge before scanning to unlock cookie database.
+                    </div>
+                    
+                    <div class="privacy-actions">
+                        <button id="scanBrowserBtn" class="btn btn-primary">
+                            <i data-lucide="scan"></i> Scan Browser Data
+                        </button>
+                        <button id="clearTrackingBtn" class="btn btn-danger" style="display:none;">
+                            <i data-lucide="trash-2"></i> Clear Tracking Cookies
+                        </button>
+                        <button id="clearAllCookiesBtn" class="btn btn-danger">
+                            <i data-lucide="trash"></i> Clear ALL Cookies
+                        </button>
+                    </div>
+                    
+                    <div id="privacyStats" class="privacy-stats" style="display:none;">
+                        <div class="stat-card critical">
+                            <div class="stat-value" id="criticalCount">0</div>
+                            <div class="stat-label">Critical Risk</div>
+                        </div>
+                        <div class="stat-card high">
+                            <div class="stat-value" id="highCount">0</div>
+                            <div class="stat-label">High Risk</div>
+                        </div>
+                        <div class="stat-card medium">
+                            <div class="stat-value" id="mediumCount">0</div>
+                            <div class="stat-label">Medium Risk</div>
+                        </div>
+                        <div class="stat-card low">
+                            <div class="stat-value" id="lowCount">0</div>
+                            <div class="stat-label">Low Risk</div>
+                        </div>
+                    </div>
+                    
+                    <div id="cookieResults" class="cookie-results"></div>
+                </div>
+            </section>
+
+            <!-- Forensic Scan Section -->
+            <section id="forensic" class="content-section">
+                <div class="section-header">
+                    <h1>Forensic <span class="highlight">Visibility</span> Engine</h1>
+                    <p>Recover deleted files from unallocated disk space using raw sector analysis</p>
+                </div>
+                
+                <div class="malware-container">
+                    <div class="alert-box warning">
+                        <i data-lucide="shield-alert"></i>
+                        <strong>Requires Admin:</strong> This feature needs administrator privileges to access raw disk sectors.
+                    </div>
+                    
+                    <!-- Configuration Card -->
+                    <div class="malware-config-card">
+                        <div class="malware-config-header">
+                            <i data-lucide="hard-drive"></i>
+                            <h3>Scan Configuration</h3>
+                        </div>
+                        
+                        <div class="malware-controls">
+                            <div class="forensic-controls-row">
+                                <div class="control-group">
+                                    <label>
+                                        <i data-lucide="disc"></i>
+                                        Target Drive:
+                                    </label>
+                                    <select id="forensicDrive" class="malware-path-input">
+                                        <option value="C">C: (System Drive)</option>
+                                        <option value="D">D: (Data Drive)</option>
+                                        <option value="E">E: (External Drive)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label>
+                                        <i data-lucide="database"></i>
+                                        Sectors to Scan:
+                                    </label>
+                                    <input type="number" id="forensicSectors" class="malware-path-input" value="10000" min="100" max="100000" placeholder="Number of sectors...">
+                                    <small style="color: #888; font-size: 0.85rem; margin-top: 4px; display: block;">
+                                        Higher values = deeper scan (slower)
+                                    </small>
+                                </div>
+                                
+                                <div class="malware-action-buttons">
+                                    <button id="startForensicBtn" class="btn btn-primary">
+                                        <i data-lucide="search"></i> Start Forensic Scan
+                                    </button>
+                                    <button id="stopForensicBtn" class="btn btn-danger" style="display:none;">
+                                        <i data-lucide="stop-circle"></i> Stop Scan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Card -->
+                    <div class="malware-status-card">
+                        <div id="forensicStatus" class="malware-status">
+                            <div class="status-indicator offline">
+                                <div class="status-dot"></div>
+                                <span>Scan Inactive</span>
+                            </div>
+                            
+                            <div id="forensicProgress" class="forensic-progress-enhanced" style="display:none;">
+                                <div class="progress-header">
+                                    <h4>
+                                        <i data-lucide="activity"></i>
+                                        Scanning Progress
+                                    </h4>
+                                    <span class="progress-percentage" id="forensicProgressPercent">0%</span>
+                                </div>
+                                
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-enhanced">
+                                        <div class="progress-fill-enhanced" id="forensicProgressBar"></div>
+                                        <div class="progress-glow"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-details">
+                                    <div class="progress-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Sectors Scanned:</span>
+                                            <span class="stat-value" id="sectorsScanned">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Files Found:</span>
+                                            <span class="stat-value" id="filesFound">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Speed:</span>
+                                            <span class="stat-value" id="scanSpeed">0 sectors/sec</span>
+                                        </div>
+                                    </div>
+                                    <div id="forensicProgressText" class="progress-message">Initializing scan...</div>
+                                </div>
+                            </div>
+                            
+                            <div class="status-details" style="display: none;">
+                                <h4>
+                                    <i data-lucide="info"></i>
+                                    Scan Details
+                                </h4>
+                                <p>Analyzing raw disk sectors for file signatures (JPEG, PNG, PDF, ZIP, DOCX, and 10+ more formats).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Card -->
+                    <div class="malware-alerts-card" style="display: none;">
+                        <!-- Results moved outside container, this card is no longer used -->
+                    </div>
+                </div>
+                
+                <!-- Results Section (Moved Outside Container) -->
+                <div id="forensicResults" style="margin-top: 24px;">
+                    <!-- Populated by JavaScript with table structure below -->
+                </div>
+                
+                <!-- Deleted Files Table Template (Hidden, cloned by JS) -->
+                <template id="forensicTableTemplate">
+                    <div class="forensic-deleted-files-section">
+                        <div class="forensic-section-header">
+                            <h3>
+                                <i data-lucide="trash-2"></i>
+                                Deleted Files Found
+                            </h3>
+                            <span class="file-count-badge"></span>
+                        </div>
+                        
+                        <div class="forensic-table-wrapper">
+                            <table class="forensic-deleted-table">
+                                <thead>
+                                    <tr>
+                                        <th>FILE TYPE</th>
+                                        <th>SECTOR</th>
+                                        <th>OFFSET</th>
+                                        <th>SIZE</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="forensic-deleted-tbody">
+                                    <!-- Rows populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </template>
+            </section>
+
+            <!-- Malware Detection Section -->
+            <section id="malware" class="content-section">
+                <div class="section-header">
+                    <h1>Malware <span class="highlight">Detection</span></h1>
+                    <p>Real-time monitoring for self-replicating malware and suspicious file activities</p>
+                </div>
+                
+                <div class="malware-container">
+                    <!-- Configuration Card -->
+                    <div class="malware-config-card">
+                        <div class="malware-config-header">
+                            <i data-lucide="settings"></i>
+                            <h3>Monitor Configuration</h3>
+                        </div>
+                        
+                        <div class="malware-controls">
+                            <div class="control-group">
+                                <label>
+                                    <i data-lucide="folder"></i>
+                                    Monitor Path:
+                                </label>
+                                <input type="text" id="malwarePath" class="malware-path-input" value="C:\Temp" placeholder="Enter path to monitor...">
+                            </div>
+                            
+                            <div class="malware-action-buttons">
+                                <button id="startMalwareBtn" class="btn btn-primary">
+                                    <i data-lucide="play"></i> Start Monitoring
+                                </button>
+                                <button id="stopMalwareBtn" class="btn btn-danger" style="display:none;">
+                                    <i data-lucide="stop-circle"></i> Stop Monitoring
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Card -->
+                    <div class="malware-status-card">
+                        <div id="malwareStatus" class="malware-status">
+                            <div class="status-indicator offline">
+                                <div class="status-dot"></div>
+                                <span>Monitoring Inactive</span>
+                            </div>
+                            
+                            <div class="status-details" style="display: none;">
+                                <h4>
+                                    <i data-lucide="info"></i>
+                                    Monitoring Details
+                                </h4>
+                                <p>Real-time monitoring active - detecting suspicious file activities and malware behavior.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alerts Card -->
+                    <div class="malware-alerts-card">
+                        <div class="malware-alerts-header">
+                            <h4>
+                                <i data-lucide="shield-alert"></i>
+                                Security Alerts
+                            </h4>
+                            <span class="alerts-count" id="alertsCount" style="display: none;">0</span>
+                        </div>
+                        
+                        <div id="malwareAlerts" class="malware-alerts">
+                            <div class="malware-alerts-empty">
+                                <i data-lucide="shield-check"></i>
+                                <h5>No Threats Detected</h5>
+                                <p>Start monitoring to begin real-time malware detection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Network Monitor Section -->
+            <section id="network" class="content-section">
+                <div class="section-header">
+                    <h1>Network <span class="highlight">Monitor</span></h1>
+                    <p>Detect data leaks via outgoing network traffic</p>
+                </div>
+                
+                <div class="malware-container">
+                    <div class="alert-box warning">
+                        <i data-lucide="alert-triangle"></i>
+                        <strong>Note:</strong> Monitors network connections for suspicious high-frequency activity.
+                    </div>
+                    
+                    <!-- Configuration Card -->
+                    <div class="malware-config-card">
+                        <div class="malware-config-header">
+                            <i data-lucide="network"></i>
+                            <h3>Monitor Configuration</h3>
+                        </div>
+                        
+                        <div class="malware-controls">
+                            <div class="control-group">
+                                <label>
+                                    <i data-lucide="timer"></i>
+                                    Monitor Duration (seconds):
+                                </label>
+                                <input type="number" id="networkDuration" class="malware-path-input" value="60" min="10" max="600" placeholder="Enter duration...">
+                            </div>
+                            
+                            <div class="malware-action-buttons">
+                                <button id="startNetworkBtn" class="btn btn-primary">
+                                    <i data-lucide="play"></i> Start Monitoring
+                                </button>
+                                <button id="stopNetworkBtn" class="btn btn-danger" style="display:none;">
+                                    <i data-lucide="stop-circle"></i> Stop Monitoring
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Card -->
+                    <div class="malware-status-card">
+                        <div id="networkStatus" class="malware-status">
+                            <div class="status-indicator offline">
+                                <div class="status-dot"></div>
+                                <span>Monitoring Inactive</span>
+                            </div>
+                            
+                            <div class="status-details" style="display: none;">
+                                <h4>
+                                    <i data-lucide="info"></i>
+                                    Monitoring Details
+                                </h4>
+                                <p>Real-time network monitoring active - detecting suspicious outgoing traffic patterns and data leaks.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Network Results Card -->
+                    <div class="malware-alerts-card">
+                        <div class="malware-alerts-header">
+                            <h4>
+                                <i data-lucide="activity"></i>
+                                Network Activity Results
+                            </h4>
+                            <span class="alerts-count" id="networkResultsCount" style="display: none;">0</span>
+                        </div>
+                        
+                        <div id="networkAlerts" class="malware-alerts">
+                            <div class="malware-alerts-empty">
+                                <i data-lucide="network"></i>
+                                <h5>No Network Activity</h5>
+                                <p>Start monitoring to analyze network traffic patterns</p>
+                            </div>
+                            
+                            <!-- Table structure for network data -->
+                            <div class="network-table-wrapper" style="display: none;">
+                                <table class="network-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Process</th>
+                                            <th>Local Address</th>
+                                            <th>Remote Address</th>
+                                            <th>Protocol</th>
+                                            <th>Data Sent</th>
+                                            <th>Data Received</th>
+                                            <th>Status</th>
+                                            <th>Risk Level</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="networkTableBody">
+                                        <!-- Populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exfiltration Detection Section -->
+            <section id="exfiltration" class="content-section">
+                <div class="section-header">
+                    <h1>Exfiltration <span class="highlight">Detection</span></h1>
+                    <p>Correlate file access with network transmission to detect data theft</p>
+                </div>
+                
+                <div class="malware-container">
+                    <!-- Alert Box -->
+                    <div class="alert-box warning">
+                        <i data-lucide="shield-alert"></i>
+                        <span><strong>Critical:</strong> Detects processes reading large amounts of data while maintaining network connections.</span>
+                    </div>
+                    
+                    <!-- Configuration Card -->
+                    <div class="malware-config-card">
+                        <div class="malware-config-header">
+                            <i data-lucide="file-warning"></i>
+                            <h3>Detection Configuration</h3>
+                        </div>
+                        
+                        <div class="malware-controls">
+                            <div class="control-group">
+                                <label>
+                                    <i data-lucide="timer"></i>
+                                    Monitor Duration (seconds):
+                                </label>
+                                <input type="number" id="exfiltrationDuration" class="malware-path-input" value="60" min="10" max="600" placeholder="Enter duration...">
+                            </div>
+                            
+                            <div class="malware-action-buttons">
+                                <button id="startExfiltrationBtn" class="btn btn-primary">
+                                    <i data-lucide="play"></i> Start Detection
+                                </button>
+                                <button id="stopExfiltrationBtn" class="btn btn-danger" style="display:none;">
+                                    <i data-lucide="stop-circle"></i> Stop Detection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Card -->
+                    <div class="malware-status-card">
+                        <div id="exfiltrationStatus" class="malware-status">
+                            <div class="status-indicator offline">
+                                <div class="status-dot"></div>
+                                <span>Detection Inactive</span>
+                            </div>
+                            
+                            <div class="status-details" style="display: none;">
+                                <h4>
+                                    <i data-lucide="info"></i>
+                                    Detection Details
+                                </h4>
+                                <p>Monitoring processes for suspicious data access patterns and network activity correlation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alerts Card -->
+                    <div class="malware-alerts-card">
+                        <div class="malware-alerts-header">
+                            <h4>
+                                <i data-lucide="alert-triangle"></i>
+                                Exfiltration Alerts
+                            </h4>
+                            <span class="alerts-count" id="exfiltrationAlertsCount" style="display: none;">0</span>
+                        </div>
+                        
+                        <div id="exfiltrationAlerts" class="malware-alerts">
+                            <div class="malware-alerts-empty">
+                                <i data-lucide="shield-check"></i>
+                                <h5>No Exfiltration Detected</h5>
+                                <p>Start detection to monitor for data theft attempts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Anomaly Detection Section -->
+            <section id="anomaly" class="content-section">
+                <div class="section-header">
+                    <h1>Traffic <span class="highlight">Anomaly</span> Detection</h1>
+                    <p>Baseline behavior and detect unusual patterns</p>
+                </div>
+                
+                <div class="malware-container">
+                    <div class="alert-box warning">
+                        <i data-lucide="activity"></i>
+                        <strong>Process:</strong> First establishes baseline, then monitors for anomalies (3σ threshold).
+                    </div>
+                    
+                    <div class="malware-controls">
+                        <div class="control-group">
+                            <label>Baseline Duration (seconds):</label>
+                            <input type="number" id="anomalyBaseline" value="30" min="10" max="300" style="width: 150px;">
+                        </div>
+                        <div class="control-group">
+                            <label>Monitor Duration (seconds):</label>
+                            <input type="number" id="anomalyMonitor" value="60" min="10" max="600" style="width: 150px;">
+                        </div>
+                        <button id="startAnomalyBtn" class="btn btn-primary">
+                            <i data-lucide="play"></i> Start Analysis
+                        </button>
+                        <button id="stopAnomalyBtn" class="btn btn-danger" style="display:none;">
+                            <i data-lucide="stop-circle"></i> Stop Analysis
+                        </button>
+                    </div>
+                    
+                    <div id="anomalyStatus" class="malware-status">
+                        <div class="status-indicator offline">
+                            <div class="status-dot"></div>
+                            <span>Analysis Inactive</span>
+                        </div>
+                    </div>
+                    
+                    <div id="anomalyProgress" class="forensic-progress" style="display:none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="anomalyProgressBar"></div>
+                        </div>
+                        <div id="anomalyProgressText">Establishing baseline...</div>
+                    </div>
+                    
+                    <!-- Anomaly Alerts Card -->
+                    <div class="malware-alerts-card">
+                        <div class="malware-alerts-header">
+                            <h4>
+                                <i data-lucide="alert-triangle"></i>
+                                Anomaly Alerts
+                            </h4>
+                            <span class="alerts-count" id="anomalyAlertsCount" style="display: none;">0</span>
+                        </div>
+                        
+                        <div id="anomalyAlerts" class="malware-alerts">
+                            <div class="malware-alerts-empty">
+                                <i data-lucide="activity"></i>
+                                <h5>No Anomalies Detected</h5>
+                                <p>Start analysis to monitor for traffic anomalies</p>
+                            </div>
+                            
+                            <!-- Table structure for anomaly data -->
+                            <div class="anomaly-table-wrapper" style="display: none;">
+                                <table class="anomaly-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Anomaly Type</th>
+                                            <th>Current Value</th>
+                                            <th>Baseline</th>
+                                            <th>Deviation</th>
+                                            <th>Risk Level</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="anomalyTableBody">
+                                        <!-- Populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Operation Success Modal -->
+    <div id="opSuccessModal" class="modal hidden">
+        <div class="modal-content" style="max-width:600px;">
+            <div class="modal-header">
+                <h3>Operation Complete</h3>
+                <button id="closeSuccessModal" class="close-btn">&times;</button>
+            </div>
+            <div style="padding:20px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                    <div style="font-size:24px;">
+                        <i data-lucide="check-circle" style="width: 24px; height: 24px; color: #00ff88;"></i>
+                    </div>
+                    <div style="font-size:18px;font-weight:500;">Operation completed successfully</div>
+                </div>
+                <div id="opSummary"
+                    style="margin-bottom:20px;padding:12px;background:rgba(0,0,0,0.1);border-radius:6px;"></div>
+                <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;">
+                    <button id="saveClearanceBtn" class="btn btn-secondary">
+                        <span class="btn-icon">
+                            <i data-lucide="hard-drive-download" style="width: 16px; height: 16px;"></i>
+                        </span> Machine
+                        Report</button>
+                    <button id="pdfClearanceBtn" class="btn btn-accent">
+                        <span class="btn-icon">
+                            <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+                        </span> PDF
+                        Report</button>
+                </div>
+            </div>
+            <div id="clearanceDetails"
+                style="margin:0 20px 20px;padding:12px;background:rgba(0,0,0,0.1);border-radius:6px;display:none;">
+            </div>
+        </div>
+    </div>
+
+    <div class="container"></div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="previewTitle">Preview</h3>
+            </div>
+            <pre id="previewBody" class="preview-body"></pre>
+        </div>
+    </div>
+
+    <!-- Operation Progress Modal (for delete/erase) -->
+    <div id="opProgress" class="modal hidden" aria-hidden="true">
+        <div class="modal-content" style="max-width:720px;">
+            <div class="modal-header">
+                <h3 id="opTitle">Processing...</h3>
+            </div>
+            <div style="padding:14px 16px;">
+                <div id="opMessage" style="margin-bottom:10px;opacity:0.9;">Starting…</div>
+                <div class="progress-container">
+                    <div class="progress-bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div id="opFill" class="progress-fill"></div>
+                    </div>
+                    <div id="opPercent" class="progress-percent">0%</div>
+                </div>
+                <div style="display:flex;gap:16px;margin-top:10px;opacity:0.85;flex-wrap:wrap;">
+                    <div><small>Files: <span id="opFiles">0</span></small></div>
+                    <div><small>Written: <span id="opBytes">0 B</span></small></div>
+                    <div><small>ETA: <span id="opEta">—</span></small></div>
+                </div>
+                <div style="margin-top:14px;display:flex;gap:8px;justify-content:flex-end;">
+                    <button id="opCancel" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inline toggle function as backup
+        window.toggleSidebar = function() {
+            console.log('Toggle sidebar function called');
+            const sidebar = document.getElementById('sidebar');
+            const deviceShell = document.querySelector('.device-outer-shell');
+            
+            if (sidebar && deviceShell) {
+                const isCollapsed = sidebar.classList.contains('collapsed');
+                console.log('Current state:', isCollapsed ? 'collapsed' : 'expanded');
+                
+                // Add smooth transition class
+                sidebar.style.transition = 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                if (isCollapsed) {
+                    sidebar.classList.remove('collapsed');
+                    deviceShell.classList.remove('sidebar-collapsed');
+                    localStorage.setItem('sidebarCollapsed', 'false');
+                    console.log('Sidebar expanded');
+                } else {
+                    sidebar.classList.add('collapsed');
+                    deviceShell.classList.add('sidebar-collapsed');
+                    localStorage.setItem('sidebarCollapsed', 'true');
+                    console.log('Sidebar collapsed');
+                }
+                
+                // Re-initialize Lucide icons after animation completes
+                setTimeout(() => {
+                    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                        lucide.createIcons();
+                    }
+                }, 400);
+            } else {
+                console.error('Sidebar elements not found:', { sidebar, deviceShell });
+            }
+        };
+        
+        // Add keyboard shortcut (Ctrl+B or Cmd+B)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+                e.preventDefault();
+                window.toggleSidebar();
+            }
+        });
+        
+        window.addEventListener('DOMContentLoaded', function () {
+            var text = 'SECURE ERASE & VERIFICATION ENGINE';
+            var typingDiv = document.getElementById('typingText');
+            var i = 0;
+            var mainContainer = document.getElementById('mainContainer');
+            var fadeTextContainer = document.querySelector('.fade-text-container');
+            var fadeText = document.querySelector('.fade-text');
+            var seveLogo = document.getElementById('seveLogo');
+            var deviceShell = document.getElementById('deviceShell');
+            var animationSkipped = false;
+
+            // Lock scroll during animation
+            document.body.classList.add('no-scroll');
+            window.scrollTo(0, 0);
+
+            // Handle spacebar to skip animation
+            function handleSkipAnimation(e) {
+                if (e.code === 'Space' && !animationSkipped) {
+                    e.preventDefault();
+                    animationSkipped = true;
+                    skipToMainContent();
+                }
+            }
+
+            function skipToMainContent() {
+                // Clear all timeouts
+                clearTimeout(typingTimer);
+                clearTimeout(moveTimer);
+                clearTimeout(finalSequenceTimer);
+
+                // Immediately show main content
+                document.body.classList.remove('no-scroll');
+                deviceShell.style.opacity = '1';
+                
+                // Remove animation container
+                if (mainContainer) {
+                    mainContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        if (mainContainer) mainContainer.remove();
+                    }, 300);
+                }
+            }
+
+            var typingTimer, moveTimer, finalSequenceTimer;
+
+            // Clear any existing content first
+            if (typingDiv) {
+                typingDiv.innerHTML = '';
+            }
+
+            // WebAudio typing sound: mechanical keyboard/typewriter-like
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            let audioCtx = null;
+            try { audioCtx = new AudioCtx(); } catch (e) { audioCtx = null; }
+
+            // Create a short noise buffer for the "clack"
+            function makeNoiseBuffer() {
+                if (!audioCtx) return null;
+                const duration = 0.03; // 30ms noise
+                const sampleRate = audioCtx.sampleRate;
+                const buffer = audioCtx.createBuffer(1, duration * sampleRate, sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < data.length; i++) {
+                    data[i] = (Math.random() * 2 - 1) * (1 - i / data.length); // slight decay
+                }
+                return buffer;
+            }
+
+            let noiseBuffer = null;
+
+            function playTypeMech() {
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                if (!noiseBuffer) noiseBuffer = makeNoiseBuffer();
+                if (!noiseBuffer) return;
+
+                // Noise burst (key click)
+                const noise = audioCtx.createBufferSource();
+                noise.buffer = noiseBuffer;
+                const noiseFilter = audioCtx.createBiquadFilter();
+                noiseFilter.type = 'lowpass';
+                noiseFilter.frequency.setValueAtTime(4000 + Math.random() * 1000, now);
+                const noiseGain = audioCtx.createGain();
+                noiseGain.gain.setValueAtTime(0.0001, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.2, now + 0.006);
+                noiseGain.gain.exponentialRampToValueAtTime(0.0005, now + 0.06);
+                noise.connect(noiseFilter).connect(noiseGain).connect(audioCtx.destination);
+                noise.start(now);
+                noise.stop(now + 0.05);
+
+                // Low thump (mechanical action)
+                const thump = audioCtx.createOscillator();
+                thump.type = 'sine';
+                thump.frequency.setValueAtTime(120 + Math.random() * 40, now);
+                const thumpGain = audioCtx.createGain();
+                thumpGain.gain.setValueAtTime(0.0001, now);
+                thumpGain.gain.exponentialRampToValueAtTime(0.10, now + 0.012);
+                thumpGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.10);
+                thump.connect(thumpGain).connect(audioCtx.destination);
+                thump.start(now);
+                thump.stop(now + 0.08);
+            }
+
+            function playTypeBell() {
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                const bell = audioCtx.createOscillator();
+                bell.type = 'triangle';
+                bell.frequency.setValueAtTime(880, now);
+                const bellGain = audioCtx.createGain();
+                bellGain.gain.setValueAtTime(0.0001, now);
+                bellGain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
+                bellGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+                bell.connect(bellGain).connect(audioCtx.destination);
+                bell.start(now);
+                bell.stop(now + 0.55);
+            }
+
+            function typeWriter() {
+                if (i < text.length && typingDiv) {
+                    const ch = text.charAt(i);
+                    typingDiv.innerHTML += ch;
+                    // attempt to resume context in case it was suspended by autoplay policy
+                    if (audioCtx && audioCtx.state === 'suspended') {
+                        audioCtx.resume().catch(() => { });
+                    }
+                    // Play click only for letters (A-Z)
+                    if (/[A-Za-z]/.test(ch)) {
+                        playTypeMech();
+                    }
+                    i++;
+                    setTimeout(typeWriter, 85);
+                } else {
+                    // end-of-line bell once typing completes
+                    playTypeBell();
+                    // Start the final convergence sequence after typing is complete
+                    setTimeout(startFinalSequence, 500);
+                }
+            }
+
+            function startFinalSequence() {
+                if (!mainContainer || !fadeTextContainer || !fadeText || !seveLogo) return;
+
+                // Add final state class to container
+                mainContainer.classList.add('final-state');
+
+                // First: Show the logo with animation
+                seveLogo.style.display = 'block';
+                seveLogo.classList.add('visible');
+
+                // Immediately start fading and minimizing the text when logo appears
+                setTimeout(() => {
+                    fadeTextContainer.classList.add('converged');
+                    fadeText.classList.add('converged');
+                }, 100);
+
+                const isMobile = window.innerWidth <= 1024;
+                const finishDelay = isMobile ? 2000 : 800;
+
+                // Show main content after the delay
+                finalSequenceTimer = setTimeout(() => {
+                    document.body.classList.remove('no-scroll');
+                    deviceShell.style.opacity = '1';
+
+                    // Fade out and remove the logo/container completely (quicker)
+                    seveLogo.classList.add('fade-out');
+                    setTimeout(() => {
+                        if (mainContainer) mainContainer.remove();
+                    }, 400); // Wait for quicker fade-out
+                }, finishDelay);
+            }
+
+            const isMobile = window.innerWidth <= 1024;
+
+            if (isMobile) {
+                // On mobile, skip the pre-typing delay and typewriter, go straight to logo
+                startFinalSequence();
+            } else {
+                // Desktop sequence: start typing after delay
+                typingTimer = setTimeout(typeWriter, 3500);
+
+                // Build exact same logic as requested: Move SEVE to top after 7.5 seconds
+                moveTimer = setTimeout(function () {
+                    if (mainContainer && !mainContainer.classList.contains('final-state')) {
+                        mainContainer.classList.add('top-center');
+                    }
+                }, 7500);
+            }
+
+            // Handle transition end for borders
+            const handleTransitionEnd = function () {
+                if (mainContainer && mainContainer.classList.contains('top-center') && fadeTextContainer) {
+                    fadeTextContainer.classList.add('borders-visible');
+                }
+            };
+
+            if (mainContainer) {
+                mainContainer.addEventListener('transitionend', handleTransitionEnd);
+            }
+
+            // Add spacebar listener for skipping animation
+            window.addEventListener('keydown', handleSkipAnimation);
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="ai_features.js"></script>
+    <script>
+        // Browser Privacy Analyzer
+        document.getElementById('scanBrowserBtn')?.addEventListener('click', async function() {
+            this.disabled = true;
+            this.innerHTML = '<i data-lucide="loader-2"></i> Scanning...';
+            lucide.createIcons();
+            
+            try {
+                const result = await window.electronAPI.scanBrowserPrivacy();
+                
+                if (result.success) {
+                    displayPrivacyResults(result);
+                } else {
+                    alert('Scan failed: ' + result.error);
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
+            } finally {
+                this.disabled = false;
+                this.innerHTML = '<i data-lucide="scan"></i> Scan Browser Data';
+                lucide.createIcons();
+            }
+        });
+        
+        function displayPrivacyResults(result) {
+            // Show stats
+            document.getElementById('privacyStats').style.display = 'grid';
+            document.getElementById('criticalCount').textContent = result.stats.critical;
+            document.getElementById('highCount').textContent = result.stats.high;
+            document.getElementById('mediumCount').textContent = result.stats.medium;
+            document.getElementById('lowCount').textContent = result.stats.low;
+            
+            // Show/hide clear button based on tracking cookies
+            const clearBtn = document.getElementById('clearTrackingBtn');
+            if (result.stats.tracking > 0) {
+                clearBtn.style.display = 'inline-flex';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+            
+            // Display cookies in table format
+            const resultsDiv = document.getElementById('cookieResults');
+            
+            if (result.cookies.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="cookies-table-container">
+                        <div class="cookies-empty-state">
+                            <i data-lucide="cookie"></i>
+                            <h4>No Cookies Found</h4>
+                            <p>Your browser appears to be clean of tracking cookies.</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultsDiv.innerHTML = `
+                    <div class="cookies-table-container">
+                        <div class="cookies-table-header">
+                            <h3>
+                                <i data-lucide="cookie"></i>
+                                Cookies Found
+                                <span class="cookies-count">${result.cookies.length}</span>
+                            </h3>
+                            <div class="cookies-table-controls">
+                                <input type="text" class="cookies-search" placeholder="Search cookies..." id="cookiesSearch">
+                            </div>
+                        </div>
+                        <div class="cookies-table-wrapper">
+                            <table class="cookies-table">
+                                <thead>
+                                    <tr>
+                                        <th>Domain</th>
+                                        <th>Cookie Name</th>
+                                        <th>Category</th>
+                                        <th>Issues</th>
+                                        <th>Risk Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cookiesTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                
+                const tableBody = document.getElementById('cookiesTableBody');
+                
+                result.cookies.forEach(cookie => {
+                    const row = document.createElement('tr');
+                    row.className = `risk-${cookie.risk}`;
+                    row.innerHTML = `
+                        <td>
+                            <div class="cookie-domain">${escapeHtml(cookie.domain)}</div>
+                        </td>
+                        <td>
+                            <div class="cookie-name">${escapeHtml(cookie.name)}</div>
+                        </td>
+                        <td>
+                            <div class="cookie-category">${cookie.category}</div>
+                        </td>
+                        <td>
+                            <div class="cookie-issues">${cookie.reasons.length > 0 ? cookie.reasons.join(', ') : 'None'}</div>
+                        </td>
+                        <td>
+                            <span class="risk-badge ${cookie.risk}">${cookie.risk.toUpperCase()}</span>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                
+                // Add search functionality
+                const searchInput = document.getElementById('cookiesSearch');
+                if (searchInput) {
+                    searchInput.addEventListener('input', function() {
+                        const searchTerm = this.value.toLowerCase();
+                        const rows = tableBody.querySelectorAll('tr');
+                        
+                        rows.forEach(row => {
+                            const domain = row.querySelector('.cookie-domain').textContent.toLowerCase();
+                            const name = row.querySelector('.cookie-name').textContent.toLowerCase();
+                            const category = row.querySelector('.cookie-category').textContent.toLowerCase();
+                            const issues = row.querySelector('.cookie-issues').textContent.toLowerCase();
+                            
+                            const matches = domain.includes(searchTerm) || 
+                                          name.includes(searchTerm) || 
+                                          category.includes(searchTerm) || 
+                                          issues.includes(searchTerm);
+                            
+                            row.style.display = matches ? '' : 'none';
+                        });
+                    });
+                }
+            }
+            
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Clear Tracking Cookies
+        document.getElementById('clearTrackingBtn')?.addEventListener('click', async function() {
+            if (!confirm('Delete all tracking cookies? Browser must be closed.')) return;
+            
+            this.disabled = true;
+            const originalHtml = this.innerHTML;
+            this.innerHTML = '<i data-lucide="loader-2"></i> Clearing...';
+            lucide.createIcons();
+            
+            try {
+                const result = await window.electronAPI.clearTrackingCookies();
+                
+                if (result.success) {
+                    alert(`Successfully deleted ${result.deleted} tracking cookies!`);
+                    // Hide clear button and rescan
+                    this.style.display = 'none';
+                    document.getElementById('scanBrowserBtn').click();
+                } else {
+                    alert('Failed to clear cookies: ' + result.error);
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
+            } finally {
+                this.disabled = false;
+                this.innerHTML = originalHtml;
+                lucide.createIcons();
+            }
+        });
+        
+        // Clear ALL Cookies
+        document.getElementById('clearAllCookiesBtn')?.addEventListener('click', async function() {
+            if (!confirm('⚠️ DELETE ALL COOKIES?\n\nThis will:\n- Log you out of all websites\n- Clear all browser data\n- Remove all saved preferences\n\nBrowser MUST be closed.\n\nAre you sure?')) return;
+            
+            this.disabled = true;
+            const originalHtml = this.innerHTML;
+            this.innerHTML = '<i data-lucide="loader-2"></i> Clearing...';
+            lucide.createIcons();
+            
+            try {
+                const result = await window.electronAPI.clearAllCookies();
+                
+                if (result.success) {
+                    alert(`✅ Successfully deleted ALL ${result.deleted} cookies!\n\nYour browser is now completely clean.`);
+                    // Rescan to show empty state
+                    document.getElementById('scanBrowserBtn').click();
+                } else {
+                    alert('Failed to clear all cookies: ' + result.error);
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
+            } finally {
+                this.disabled = false;
+                this.innerHTML = originalHtml;
+                lucide.createIcons();
+            }
+        });
+        
+        // Forensic Scanner
+        document.getElementById('startForensicBtn')?.addEventListener('click', async function() {
+            const drive = document.getElementById('forensicDrive').value;
+            const sectors = parseInt(document.getElementById('forensicSectors').value);
+            
+            this.disabled = true;
+            this.innerHTML = '<i data-lucide="loader-2"></i> Scanning...';
+            document.getElementById('forensicProgress').style.display = 'block';
+            lucide.createIcons();
+            
+            try {
+                const result = await window.electronAPI.forensicScan(drive, 1000, sectors);
+                
+                if (result.success) {
+                    displayForensicResults(result);
+                } else {
+                    alert('Forensic scan failed: ' + result.error + '\n\nMake sure app is running as Administrator.');
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
+            } finally {
+                this.disabled = false;
+                this.innerHTML = '<i data-lucide="search"></i> Start Forensic Scan';
+                document.getElementById('forensicProgress').style.display = 'none';
+                lucide.createIcons();
+            }
+        });
+        
+        function displayForensicResults(result) {
+            const resultsDiv = document.getElementById('forensicResults');
+            resultsDiv.innerHTML = `
+                <h3>Forensic Scan Results</h3>
+                <div class="forensic-stats">
+                    <div class="stat-item">
+                        <strong>${result.sectors_scanned}</strong>
+                        <span>Sectors Scanned</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>${result.files_found}</strong>
+                        <span>Files Found</span>
+                    </div>
+                </div>
+                <h4>File Types Discovered:</h4>
+            `;
+            
+            if (Object.keys(result.summary).length > 0) {
+                const summaryDiv = document.createElement('div');
+                summaryDiv.className = 'file-type-summary';
+                for (const [type, count] of Object.entries(result.summary)) {
+                    summaryDiv.innerHTML += `<div class="file-type-item"><strong>${type}:</strong> ${count} files</div>`;
+                }
+                resultsDiv.appendChild(summaryDiv);
+            } else {
+                resultsDiv.innerHTML += '<p>No deleted files found in scanned sectors.</p>';
+            }
+            
+            if (result.findings && result.findings.length > 0) {
+                resultsDiv.innerHTML += '<h4>Deleted Files Found:</h4>';
+                const findingsDiv = document.createElement('div');
+                findingsDiv.className = 'findings-list';
+                result.findings.slice(0, 50).forEach((finding, index) => {
+                    const findingItem = document.createElement('div');
+                    findingItem.className = 'finding-item';
+                    findingItem.innerHTML = `
+                        <div class="finding-header">
+                            <strong>${finding.type}</strong>
+                            <span class="finding-location">Sector ${finding.sector} (offset ${finding.offset})</span>
+                        </div>
+                        <div class="finding-actions">
+                            <button class="btn-small btn-primary" onclick="viewForensicFile('${result.drive}', ${finding.sector}, '${finding.type}')">
+                                <i data-lucide="eye"></i> View
+                            </button>
+                            <button class="btn-small btn-secondary" onclick="exportForensicFile('${result.drive}', ${finding.sector}, '${finding.type}')">
+                                <i data-lucide="download"></i> Export
+                            </button>
+                            <button class="btn-small btn-danger" onclick="wipeForensicFile('${result.drive}', ${finding.sector}, '${finding.type}')">
+                                <i data-lucide="trash-2"></i> Wipe
+                            </button>
+                        </div>
+                    `;
+                    findingsDiv.appendChild(findingItem);
+                });
+                resultsDiv.appendChild(findingsDiv);
+                
+                // Reinitialize Lucide icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+        }
+        
+        // Forensic file actions
+        async function viewForensicFile(drive, sector, type) {
+            try {
+                const result = await window.electronAPI.forensicViewFile(drive, sector, type);
+                
+                if (!result.success) {
+                    alert('Failed to view file: ' + result.error);
+                    return;
+                }
+                
+                // Create modal to display file content
+                const modal = document.createElement('div');
+                modal.className = 'forensic-modal';
+                modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:10000;';
+                
+                const content = document.createElement('div');
+                content.style.cssText = 'background:#1a1a1a;padding:30px;border-radius:12px;max-width:90%;max-height:90%;overflow:auto;color:#fff;';
+                
+                if (result.type === 'image') {
+                    content.innerHTML = `
+                        <h3>${type} Image (${result.size} bytes)</h3>
+                        <img src="data:${result.mime};base64,${result.content}" style="max-width:100%;max-height:70vh;"/>
+                        <button onclick="this.closest('.forensic-modal').remove()" class="btn btn-secondary" style="margin-top:20px;">Close</button>
+                    `;
+                } else if (result.type === 'text') {
+                    content.innerHTML = `
+                        <h3>${type} File (${result.size} bytes)</h3>
+                        <pre style="background:#000;padding:20px;border-radius:8px;overflow:auto;max-height:60vh;white-space:pre-wrap;">${escapeHtml(result.content)}</pre>
+                        <button onclick="this.closest('.forensic-modal').remove()" class="btn btn-secondary" style="margin-top:20px;">Close</button>
+                    `;
+                } else {
+                    content.innerHTML = `
+                        <h3>${type} File (${result.size} bytes) - Hex Dump</h3>
+                        <pre style="background:#000;padding:20px;border-radius:8px;overflow:auto;max-height:60vh;font-family:monospace;">${result.content}</pre>
+                        <button onclick="this.closest('.forensic-modal').remove()" class="btn btn-secondary" style="margin-top:20px;">Close</button>
+                    `;
+                }
+                
+                modal.appendChild(content);
+                document.body.appendChild(modal);
+                
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            } catch (err) {
+                alert('Error viewing file: ' + err.message);
+            }
+        }
+        
+        async function exportForensicFile(drive, sector, type) {
+            try {
+                const result = await window.electronAPI.showSaveDialog();
+                if (result.canceled || !result.filePath) return;
+                
+                const outputPath = result.filePath;
+                const exportResult = await window.electronAPI.forensicExportFile(drive, sector, type, outputPath);
+                
+                if (exportResult.success) {
+                    alert(`✅ File exported successfully!\n\nPath: ${exportResult.path}\nSize: ${exportResult.size} bytes`);
+                } else {
+                    alert('Export failed: ' + exportResult.error);
+                }
+            } catch (err) {
+                alert('Error exporting file: ' + err.message);
+            }
+        }
+        
+        async function wipeForensicFile(drive, sector, type) {
+            if (!confirm(`⚠️ PERMANENTLY WIPE THIS FILE?\n\nThis will overwrite the sectors containing this ${type} file with zeros.\nThis action CANNOT be undone!\n\nContinue?`)) {
+                return;
+            }
+            
+            try {
+                // Estimate sector count (use 100 sectors as default)
+                const sectorCount = 100;
+                const passes = 3;
+                
+                const result = await window.electronAPI.forensicWipeSectors(drive, sector, sectorCount, passes);
+                
+                if (result.success) {
+                    alert(`✅ File wiped successfully!\n\nSectors wiped: ${result.sectors_wiped}\nPasses: ${result.passes}`);
+                } else {
+                    alert('Wipe failed: ' + result.error);
+                }
+            } catch (err) {
+                alert('Error wiping file: ' + err.message);
+            }
+        }
+        
+        // Malware Detection
+        let malwareMonitoring = false;
+        
+        document.getElementById('startMalwareBtn')?.addEventListener('click', async function() {
+            const path = document.getElementById('malwarePath').value;
+            
+            const result = await window.electronAPI.startMalwareMonitor(path);
+            
+            if (result.success) {
+                malwareMonitoring = true;
+                document.getElementById('startMalwareBtn').style.display = 'none';
+                document.getElementById('stopMalwareBtn').style.display = 'inline-flex';
+                
+                // Target the specific malware status indicator
+                const malwareStatusIndicator = document.querySelector('#malwareStatus .status-indicator');
+                const malwareStatusText = document.querySelector('#malwareStatus .status-indicator span');
+                const statusDetails = document.querySelector('#malwareStatus .status-details');
+                
+                if (malwareStatusIndicator) {
+                    malwareStatusIndicator.className = 'status-indicator online';
+                }
+                if (malwareStatusText) {
+                    malwareStatusText.textContent = 'Monitoring Active: ' + path;
+                }
+                if (statusDetails) {
+                    statusDetails.style.display = 'block';
+                }
+                
+                // Listen for alerts
+                window.electronAPI.onMalwareAlert((alert) => {
+                    displayMalwareAlert(alert);
+                });
+            } else {
+                alert('Failed to start monitoring: ' + result.error);
+            }
+        });
+        
+        document.getElementById('stopMalwareBtn')?.addEventListener('click', async function() {
+            await window.electronAPI.stopMalwareMonitor();
+            malwareMonitoring = false;
+            document.getElementById('startMalwareBtn').style.display = 'inline-flex';
+            document.getElementById('stopMalwareBtn').style.display = 'none';
+            
+            // Target the specific malware status indicator
+            const malwareStatusIndicator = document.querySelector('#malwareStatus .status-indicator');
+            const malwareStatusText = document.querySelector('#malwareStatus .status-indicator span');
+            const statusDetails = document.querySelector('#malwareStatus .status-details');
+            
+            if (malwareStatusIndicator) {
+                malwareStatusIndicator.className = 'status-indicator offline';
+            }
+            if (malwareStatusText) {
+                malwareStatusText.textContent = 'Monitoring Inactive';
+            }
+            if (statusDetails) {
+                statusDetails.style.display = 'none';
+            }
+        });
+        
+        function displayMalwareAlert(alert) {
+            const alertsContainer = document.getElementById('malwareAlerts');
+            const alertsCount = document.getElementById('alertsCount');
+            const emptyState = alertsContainer.querySelector('.malware-alerts-empty');
+            
+            // Remove empty state if it exists
+            if (emptyState) {
+                emptyState.remove();
+            }
+            
+            // Show alerts count
+            if (alertsCount) {
+                const currentCount = parseInt(alertsCount.textContent) || 0;
+                alertsCount.textContent = currentCount + 1;
+                alertsCount.style.display = 'inline-block';
+            }
+            
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `malware-alert severity-${alert.severity || 'high'}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            
+            alertDiv.innerHTML = `
+                <div class="alert-header">
+                    <h5 class="alert-title">${alert.type || 'Malware Detection'}</h5>
+                    <div class="alert-timestamp">${timestamp}</div>
+                    <span class="severity-badge ${alert.severity || 'high'}">${(alert.severity || 'high').toUpperCase()}</span>
+                </div>
+                <div class="alert-details">
+                    <div><strong>File:</strong> <span class="alert-path">${alert.file || 'Unknown'}</span></div>
+                    <div><strong>Action:</strong> ${alert.action || 'File modification detected'}</div>
+                    <div><strong>Risk:</strong> ${alert.description || 'Suspicious file activity detected'}</div>
+                </div>
+                <div class="alert-actions">
+                    <button class="alert-action-btn primary">
+                        <i data-lucide="eye"></i> Investigate
+                    </button>
+                    <button class="alert-action-btn secondary">
+                        <i data-lucide="x"></i> Dismiss
+                    </button>
+                    <button class="alert-action-btn danger">
+                        <i data-lucide="shield"></i> Quarantine
+                    </button>
+                </div>
+            `;
+            
+            // Add to top of alerts container
+            alertsContainer.insertBefore(alertDiv, alertsContainer.firstChild);
+            
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Add dismiss functionality
+            const dismissBtn = alertDiv.querySelector('.alert-action-btn.secondary');
+            if (dismissBtn) {
+                dismissBtn.addEventListener('click', function() {
+                    alertDiv.remove();
+                    
+                    // Update count
+                    if (alertsCount) {
+                        const currentCount = parseInt(alertsCount.textContent) || 0;
+                        const newCount = Math.max(0, currentCount - 1);
+                        alertsCount.textContent = newCount;
+                        if (newCount === 0) {
+                            alertsCount.style.display = 'none';
+                            // Show empty state if no alerts left
+                            if (alertsContainer.children.length === 0) {
+                                alertsContainer.innerHTML = `
+                                    <div class="malware-alerts-empty">
+                                        <i data-lucide="shield-check"></i>
+                                        <h5>No Active Threats</h5>
+                                        <p>All alerts have been addressed</p>
+                                    </div>
+                                `;
+                                if (typeof lucide !== 'undefined') {
+                                    lucide.createIcons();
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        
+        function displayMalwareAlert(alert) {
+            const alertsDiv = document.getElementById('malwareAlerts');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'malware-alert severity-' + alert.severity;
+            alertDiv.innerHTML = `
+                <div class="alert-header">
+                    <strong>⚠️ ${alert.type.replace(/_/g, ' ').toUpperCase()}</strong>
+                    <span class="severity-badge ${alert.severity}">${alert.severity}</span>
+                </div>
+                <div class="alert-details">
+                    <div><strong>Location:</strong> ${escapeHtml(alert.location)}</div>
+                    <div><strong>Files Created:</strong> ${alert.files_created} in ${alert.time_elapsed.toFixed(1)}s</div>
+                    <div><strong>Rate:</strong> ${alert.rate.toFixed(1)} files/second</div>
+                    <div><strong>Time:</strong> ${new Date(alert.timestamp * 1000).toLocaleTimeString()}</div>
+                </div>
+            `;
+            alertsDiv.insertBefore(alertDiv, alertsDiv.firstChild);
+        }
+        
+        // Network Monitor
+        let networkMonitoring = false;
+        
+        document.getElementById('startNetworkBtn')?.addEventListener('click', async function() {
+            const duration = parseInt(document.getElementById('networkDuration').value);
+            
+            const result = await window.electronAPI.startNetworkMonitor(duration);
+            
+            if (result.success) {
+                networkMonitoring = true;
+                document.getElementById('startNetworkBtn').style.display = 'none';
+                document.getElementById('stopNetworkBtn').style.display = 'inline-flex';
+                document.querySelector('#networkStatus .status-indicator').className = 'status-indicator online';
+                document.querySelector('#networkStatus .status-indicator span').textContent = 'Monitoring Active (' + duration + 's)';
+                
+                window.electronAPI.onNetworkAlert((alert) => {
+                    displayNetworkAlert(alert);
+                });
+                
+                window.electronAPI.onNetworkMonitorStopped(() => {
+                    networkMonitoring = false;
+                    document.getElementById('startNetworkBtn').style.display = 'inline-flex';
+                    document.getElementById('stopNetworkBtn').style.display = 'none';
+                    document.querySelector('#networkStatus .status-indicator').className = 'status-indicator offline';
+                    document.querySelector('#networkStatus .status-indicator span').textContent = 'Monitoring Complete';
+                });
+            } else {
+                alert('Failed to start monitoring: ' + result.error);
+            }
+        });
+        
+        document.getElementById('stopNetworkBtn')?.addEventListener('click', async function() {
+            await window.electronAPI.stopNetworkMonitor();
+            networkMonitoring = false;
+            document.getElementById('startNetworkBtn').style.display = 'inline-flex';
+            document.getElementById('stopNetworkBtn').style.display = 'none';
+            document.querySelector('#networkStatus .status-indicator').className = 'status-indicator offline';
+            document.querySelector('#networkStatus .status-indicator span').textContent = 'Monitoring Stopped';
+        });
+        
+        function displayNetworkAlert(alert) {
+            const alertsDiv = document.getElementById('networkAlerts');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'malware-alert severity-' + alert.severity;
+            alertDiv.innerHTML = `
+                <div class="alert-header">
+                    <strong>🌐 ${alert.type.replace(/_/g, ' ').toUpperCase()}</strong>
+                    <span class="severity-badge ${alert.severity}">${alert.severity}</span>
+                </div>
+                <div class="alert-details">
+                    <div><strong>Process:</strong> ${escapeHtml(alert.process)} (PID: ${alert.pid})</div>
+                    <div><strong>Destination:</strong> ${escapeHtml(alert.destination)}</div>
+                    <div><strong>Connections:</strong> ${alert.connections}</div>
+                    <div><strong>Rate:</strong> ${alert.rate.toFixed(1)} conn/second</div>
+                    <div><strong>Time:</strong> ${new Date(alert.timestamp * 1000).toLocaleTimeString()}</div>
+                </div>
+            `;
+            alertsDiv.insertBefore(alertDiv, alertsDiv.firstChild);
+        }
+        
+        // Exfiltration Detection
+        let exfiltrationMonitoring = false;
+        
+        document.getElementById('startExfiltrationBtn')?.addEventListener('click', async function() {
+            const duration = parseInt(document.getElementById('exfiltrationDuration').value);
+            
+            const result = await window.electronAPI.startExfiltrationDetector(duration);
+            
+            if (result.success) {
+                exfiltrationMonitoring = true;
+                document.getElementById('startExfiltrationBtn').style.display = 'none';
+                document.getElementById('stopExfiltrationBtn').style.display = 'inline-flex';
+                
+                // Target the specific exfiltration status indicator
+                const statusIndicator = document.querySelector('#exfiltrationStatus .status-indicator');
+                const statusText = document.querySelector('#exfiltrationStatus .status-indicator span');
+                const statusDetails = document.querySelector('#exfiltrationStatus .status-details');
+                
+                if (statusIndicator) {
+                    statusIndicator.className = 'status-indicator online';
+                }
+                if (statusText) {
+                    statusText.textContent = 'Detection Active (' + duration + 's)';
+                }
+                if (statusDetails) {
+                    statusDetails.style.display = 'block';
+                }
+                
+                window.electronAPI.onExfiltrationAlert((alert) => {
+                    displayExfiltrationAlert(alert);
+                });
+                
+                window.electronAPI.onExfiltrationDetectorStopped(() => {
+                    exfiltrationMonitoring = false;
+                    document.getElementById('startExfiltrationBtn').style.display = 'inline-flex';
+                    document.getElementById('stopExfiltrationBtn').style.display = 'none';
+                    
+                    if (statusIndicator) {
+                        statusIndicator.className = 'status-indicator offline';
+                    }
+                    if (statusText) {
+                        statusText.textContent = 'Detection Complete';
+                    }
+                    if (statusDetails) {
+                        statusDetails.style.display = 'none';
+                    }
+                });
+            } else {
+                alert('Failed to start detection: ' + result.error);
+            }
+        });
+        
+        document.getElementById('stopExfiltrationBtn')?.addEventListener('click', async function() {
+            await window.electronAPI.stopExfiltrationDetector();
+            exfiltrationMonitoring = false;
+            document.getElementById('startExfiltrationBtn').style.display = 'inline-flex';
+            document.getElementById('stopExfiltrationBtn').style.display = 'none';
+            
+            const statusIndicator = document.querySelector('#exfiltrationStatus .status-indicator');
+            const statusText = document.querySelector('#exfiltrationStatus .status-indicator span');
+            const statusDetails = document.querySelector('#exfiltrationStatus .status-details');
+            
+            if (statusIndicator) {
+                statusIndicator.className = 'status-indicator offline';
+            }
+            if (statusText) {
+                statusText.textContent = 'Detection Stopped';
+            }
+            if (statusDetails) {
+                statusDetails.style.display = 'none';
+            }
+        });
+        
+        function displayExfiltrationAlert(alert) {
+            const alertsContainer = document.getElementById('exfiltrationAlerts');
+            const alertsCount = document.getElementById('exfiltrationAlertsCount');
+            const emptyState = alertsContainer.querySelector('.malware-alerts-empty');
+            
+            // Remove empty state if it exists and create table structure
+            if (emptyState) {
+                emptyState.remove();
+                // Create table structure
+                alertsContainer.innerHTML = `
+                    <div class="exfiltration-table-wrapper">
+                        <table class="exfiltration-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Process</th>
+                                    <th>Data Read</th>
+                                    <th>Connections</th>
+                                    <th>Remote IPs</th>
+                                    <th>Duration</th>
+                                    <th>Risk</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exfiltrationTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            // Show alerts count
+            if (alertsCount) {
+                const currentCount = parseInt(alertsCount.textContent) || 0;
+                alertsCount.textContent = currentCount + 1;
+                alertsCount.style.display = 'inline-block';
+            }
+            
+            const tableBody = document.getElementById('exfiltrationTableBody');
+            const row = document.createElement('tr');
+            row.className = `exfiltration-row severity-${alert.severity || 'critical'}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            
+            row.innerHTML = `
+                <td class="time-cell">${timestamp}</td>
+                <td class="process-cell">
+                    <div class="process-name">${alert.process || 'Unknown'}</div>
+                    <div class="process-pid">PID: ${alert.pid || 'N/A'}</div>
+                </td>
+                <td class="data-cell">${alert.dataRead || 'Unknown amount'}</td>
+                <td class="connections-cell">${alert.connections || 'Unknown'}</td>
+                <td class="ips-cell">${alert.remoteIPs || 'Unknown'}</td>
+                <td class="duration-cell">${alert.duration || 'Unknown'}</td>
+                <td class="risk-cell">
+                    <span class="severity-badge ${alert.severity || 'critical'}">${(alert.severity || 'critical').toUpperCase()}</span>
+                </td>
+                <td class="actions-cell">
+                    <div class="table-actions">
+                        <button class="table-action-btn primary" title="Investigate">
+                            <i data-lucide="search"></i>
+                            <span>Investigate</span>
+                        </button>
+                        <button class="table-action-btn secondary dismiss-btn" title="Dismiss">
+                            <i data-lucide="x"></i>
+                            <span>Dismiss</span>
+                        </button>
+                        <button class="table-action-btn danger" title="Block Process">
+                            <i data-lucide="ban"></i>
+                            <span>Block</span>
+                        </button>
+                    </div>
+                </td>
+            `;
+            
+            // Add to top of table body
+            if (tableBody) {
+                tableBody.insertBefore(row, tableBody.firstChild);
+            }
+            
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Add dismiss functionality
+            const dismissBtn = row.querySelector('.dismiss-btn');
+            if (dismissBtn) {
+                dismissBtn.addEventListener('click', function() {
+                    row.remove();
+                    
+                    // Update count
+                    if (alertsCount) {
+                        const currentCount = parseInt(alertsCount.textContent) || 0;
+                        const newCount = Math.max(0, currentCount - 1);
+                        alertsCount.textContent = newCount;
+                        if (newCount === 0) {
+                            alertsCount.style.display = 'none';
+                            // Show empty state if no alerts left
+                            if (tableBody && tableBody.children.length === 0) {
+                                alertsContainer.innerHTML = `
+                                    <div class="malware-alerts-empty">
+                                        <i data-lucide="shield-check"></i>
+                                        <h5>No Active Threats</h5>
+                                        <p>All exfiltration alerts have been addressed</p>
+                                    </div>
+                                `;
+                                if (typeof lucide !== 'undefined') {
+                                    lucide.createIcons();
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Anomaly Detection
+        let anomalyMonitoring = false;
+        
+        document.getElementById('startAnomalyBtn')?.addEventListener('click', async function() {
+            const baseline = parseInt(document.getElementById('anomalyBaseline').value);
+            const monitor = parseInt(document.getElementById('anomalyMonitor').value);
+            
+            const result = await window.electronAPI.startAnomalyDetector(baseline, monitor);
+            
+            if (result.success) {
+                anomalyMonitoring = true;
+                document.getElementById('startAnomalyBtn').style.display = 'none';
+                document.getElementById('stopAnomalyBtn').style.display = 'inline-flex';
+                document.querySelector('#anomalyStatus .status-indicator').className = 'status-indicator online';
+                document.querySelector('#anomalyStatus .status-indicator span').textContent = 'Establishing Baseline...';
+                document.getElementById('anomalyProgress').style.display = 'block';
+                
+                window.electronAPI.onAnomalyBaselineProgress((data) => {
+                    document.getElementById('anomalyProgressBar').style.width = data.progress + '%';
+                    document.getElementById('anomalyProgressText').textContent = 'Establishing baseline... ' + data.progress + '%';
+                });
+                
+                window.electronAPI.onAnomalyBaselineEstablished(() => {
+                    document.querySelector('#anomalyStatus .status-indicator span').textContent = 'Monitoring for Anomalies...';
+                    document.getElementById('anomalyProgressText').textContent = 'Baseline established, monitoring...';
+                });
+                
+                window.electronAPI.onAnomalyAlert((alert) => {
+                    displayAnomalyAlert(alert);
+                });
+                
+                window.electronAPI.onAnomalyDetectorStopped(() => {
+                    anomalyMonitoring = false;
+                    document.getElementById('startAnomalyBtn').style.display = 'inline-flex';
+                    document.getElementById('stopAnomalyBtn').style.display = 'none';
+                    document.querySelector('#anomalyStatus .status-indicator').className = 'status-indicator offline';
+                    document.querySelector('#anomalyStatus .status-indicator span').textContent = 'Analysis Complete';
+                    document.getElementById('anomalyProgress').style.display = 'none';
+                });
+            } else {
+                alert('Failed to start analysis: ' + result.error);
+            }
+        });
+        
+        document.getElementById('stopAnomalyBtn')?.addEventListener('click', async function() {
+            await window.electronAPI.stopAnomalyDetector();
+            anomalyMonitoring = false;
+            document.getElementById('startAnomalyBtn').style.display = 'inline-flex';
+            document.getElementById('stopAnomalyBtn').style.display = 'none';
+            document.querySelector('#anomalyStatus .status-indicator').className = 'status-indicator offline';
+            document.querySelector('#anomalyStatus .status-indicator span').textContent = 'Analysis Stopped';
+            document.getElementById('anomalyProgress').style.display = 'none';
+        });
+        
+        function displayAnomalyAlert(alert) {
+            const alertsDiv = document.getElementById('anomalyAlerts');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'malware-alert severity-' + alert.severity;
+            
+            let anomalyDetails = '';
+            alert.anomalies.forEach(a => {
+                anomalyDetails += `<div><strong>${a.type.replace(/_/g, ' ')}:</strong> ${typeof a.value === 'number' ? a.value.toFixed(2) : a.value} (baseline: ${typeof a.baseline === 'number' ? a.baseline.toFixed(2) : a.baseline})</div>`;
+            });
+            
+            alertDiv.innerHTML = `
+                <div class="alert-header">
+                    <strong>📊 ANOMALY DETECTED</strong>
+                    <span class="severity-badge ${alert.severity}">${alert.severity}</span>
+                </div>
+                <div class="alert-details">
+                    ${anomalyDetails}
+                    <div><strong>Time:</strong> ${new Date(alert.timestamp * 1000).toLocaleTimeString()}</div>
+                </div>
+            `;
+            alertsDiv.insertBefore(alertDiv, alertsDiv.firstChild);
+        }
+        
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+            
+            // Re-initialize icons after dynamic content is added
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        // Check if any added nodes contain Lucide icons
+                        for (let node of mutation.addedNodes) {
+                            if (node.nodeType === 1) { // Element node
+                                if (node.querySelector && node.querySelector('[data-lucide]')) {
+                                    lucide.createIcons();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Start observing
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+    </script>
+
+    <!-- Full-Screen Loading Overlay (Hidden by default) -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="loading-modal">
+            <div class="loading-spinner">
+                <!-- Multi-layered loading animation -->
+                <div class="spinner-container">
+                    <div class="spinner-ring ring-1"></div>
+                    <div class="spinner-ring ring-2"></div>
+                    <div class="spinner-ring ring-3"></div>
+                    <div class="spinner-center">
+                        <i data-lucide="hard-drive" class="center-icon"></i>
+                    </div>
+                </div>
+            </div>
+            <h3 class="loading-title">Scanning Drives</h3>
+            <p class="loading-subtitle">Please wait while we detect your storage devices...</p>
+            
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill">
+                        <div class="progress-shine"></div>
+                    </div>
+                </div>
+                <div class="progress-info">
+                    <span id="progressPercent" class="progress-text">0%</span>
+                    <span id="elapsedTime" class="elapsed-text">0.0s</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
