@@ -173,8 +173,6 @@ run-dev-admin.bat
 # ================================
 # Directories
 # ================================
-assets/
-models/
 python/
 report/
 scripts/
