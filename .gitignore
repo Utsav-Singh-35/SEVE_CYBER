@@ -152,9 +152,7 @@ seve_report_input.json
 # ================================
 # Python Files
 # ================================
-anomaly_detector.py
-browser_analyzer.py
-download_model.py
+
 drive_scanner.py
 exfiltration_detector.py
 forensic_scanner.py
