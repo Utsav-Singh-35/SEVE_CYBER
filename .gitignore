@@ -153,13 +153,7 @@ seve_report_input.json
 # Python Files
 # ================================
 
-drive_scanner.py
-exfiltration_detector.py
-forensic_scanner.py
-llm_service.py
-malware_detector.py
-network_monitor.py
-wipe_utils.py
+
 
 # ================================
 # Node/NPM Files
